@@ -81,7 +81,7 @@ let retrieveViews entitiesToFetch rawEntityMetadata mainProxy : ViewData[] * Ent
     let regex = new Regex(@"[^a-zA-Z0-9_]")
     let trimmedName = 
       regex.Replace(viewName, "")
-      |> fun s -> if Char.IsNumber(s, 0) then "_" + s else s
+      |> fun s -> if s.Length > 0 && Char.IsNumber(s, 0) then "_" + s else s
     let fullName = (sprintf "%s_%s" entityName trimmedName)
 
     let duplicates, nextMap = 
